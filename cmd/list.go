@@ -8,7 +8,9 @@ package cmd
 
 import (
 	"fmt"
+	"log"
 
+	"github.com/Allan-Nava/go-cli/todo"
 	"github.com/spf13/cobra"
 )
 
@@ -24,9 +26,15 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("list called")
+		items, err := todo.ReadItems(todo.FILENAME_LOCAL)
+		if err != nil {
+			log.Printf("%v", err)
+		}
+		fmt.Println(items)
 	},
 }
 
+//
 func init() {
 	rootCmd.AddCommand(listCmd)
 
@@ -40,3 +48,5 @@ func init() {
 	// is called directly, e.g.:
 	// listCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
+
+//

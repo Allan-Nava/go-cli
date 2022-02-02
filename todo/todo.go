@@ -12,6 +12,8 @@ import (
 	"io/ioutil"
 )
 
+const FILENAME_LOCAL = ".tridos.json"
+
 //
 type Item struct {
 	Text string
