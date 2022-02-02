@@ -1,5 +1,7 @@
 /*
 * Copyright © 2022 Allan Nava <>
+* Created 02/02/2022
+* Updated 02/02/2022
 *
  */
 package cmd
@@ -7,6 +9,7 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/Allan-Nava/go-cli/todo"
 	"github.com/spf13/cobra"
 )
 
@@ -34,11 +37,18 @@ func init() {
 //
 func addRun(cmd *cobra.Command, args []string) {
 	fmt.Println("add called ")
-
+	items := []todo.Item{}
 	for _, x := range args {
 		fmt.Println(x)
+		items = append(items, todo.Item{Text: x})
 	}
 	//
+	err := todo.SaveItems(".tridos.json", items)
+	if err != nil {
+		fmt.Errorf("%v", err)
+	}
+	//
+	fmt.Printf("%#v \n ", items)
 }
 
 //
