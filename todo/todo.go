@@ -16,7 +16,8 @@ const FILENAME_LOCAL = ".tridos.json"
 
 //
 type Item struct {
-	Text string
+	Text     string
+	Priority int
 }
 
 //
@@ -42,3 +43,25 @@ func ReadItems(filename string) ([]Item, error) {
 }
 
 //
+
+func (i *Item) SetPriority(pri int) {
+	switch pri {
+	case 1:
+		i.Priority = 1
+	case 3:
+		i.Priority = 3
+	default:
+		i.Priority = 2
+	}
+}
+
+//
+func (i *Item) PrettyP() string {
+	if i.Priority == 1 {
+		return "(1)"
+	}
+	if i.Priority == 3 {
+		return "(3)"
+	}
+	return " "
+}
