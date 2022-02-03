@@ -8,8 +8,11 @@ package cmd
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/spf13/cobra"
+
+	"github.com/Allan-Nava/go-cli/todo"
 )
 
 // rmCmd represents the rm command
@@ -34,9 +37,28 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// rmCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	//
+	rmCmd.Flags().IntVarP(&position, "position ", "i", 0, "Position: 1,2,3,4..etc")
+	//
+
 }
+
 //
 func rmRun(cmd *cobra.Command, args []string) {
 	fmt.Println("rm called")
+	items, errorRead := todo.ReadItems(dataFile)
+	if errorRead != nil {
+		fmt.Errorf("editRun error: %v", errorRead)
+	}
+	//fmt.Printf("position:%v \n items: %v\n", position, items)
+	if len(items) < position {
+		log.Print("position item doesn't exists")
+	}
+	//
+	item := &items[position]
+	//del item
+	fmt.Printf(" item: %v\n", item)
+	//
 }
+
 //
