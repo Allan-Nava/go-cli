@@ -1,12 +1,23 @@
 # GO-cli
 
-Building go cli demo
-
+Building Go CLI demo
 
 ```bash
+# for first setup
 go mod init
 go get -v  #(dependencies)
+
+# to run
+go run main.go add 
+go run main.go list
+
 ```
+## Features
+
+- add
+- list
+
+
 
 ### UNIX Philosophy 
 - simple
