@@ -15,6 +15,7 @@ import (
 	"github.com/Allan-Nava/go-cli/todo"
 	"github.com/mitchellh/go-homedir"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 var dataFile string
@@ -56,4 +57,15 @@ func init() {
 	fmt.Printf("%v ", home)
 	rootCmd.PersistentFlags().StringVar(&dataFile, "datafile", home+string(os.PathSeparator)+todo.FILENAME_LOCAL, "data file to store todos")
 	//
+}
+
+// Read in config file and ENV variables if set.
+func initConfig() {
+	viper.SetConfigName(".tri")
+	viper.AddConfigPath("$HOME")
+	viper.AutomaticEnv()
+	//If a config file is found, read it in.
+	/*if err := viper.ReadConfig(); err == nil {
+		fmt.Println("Using config file: ", viper.ConfigFileUsed())
+	}*/
 }
