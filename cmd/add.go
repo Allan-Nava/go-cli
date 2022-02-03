@@ -46,7 +46,7 @@ func addRun(cmd *cobra.Command, args []string) {
 		fmt.Errorf("%v", errorRead)
 	}
 	for _, x := range args {
-		fmt.Println(x)
+		//fmt.Println(x)
 		item := todo.Item{Text: x}
 		item.SetPriority(priority)
 		items = append(items, item)
