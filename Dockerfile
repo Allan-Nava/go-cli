@@ -1,5 +1,6 @@
 # syntax=docker/dockerfile:1.2
 FROM golang:1.20-alpine as builder
+ENV DOCKER_BUILDKIT=1
 LABEL MAINTENAIR allan.nava@hiway.media
 # Set the current working directory inside the container
 WORKDIR /app
@@ -11,8 +12,9 @@ RUN go mod download
 COPY . .
 # Build the application
 # Produce binary named main
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -a -o main main.go 
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -a -o main . 
 #################
+#
 FROM phusion/baseimage:focal-1.2.0
 #FROM phusion/baseimage:jammy-1.0.1
 #
