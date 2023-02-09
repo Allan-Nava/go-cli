@@ -1,4 +1,4 @@
-# Start from base image
+# syntax=docker/dockerfile:1.2
 FROM golang:1.20-alpine as builder
 LABEL MAINTENAIR allan.nava@hiway.media
 # Set the current working directory inside the container
