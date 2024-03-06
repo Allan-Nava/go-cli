@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.2
+# syntax=docker/dockerfile:1.7
 FROM golang:1.20-alpine as builder
 ENV DOCKER_BUILDKIT=1
 LABEL MAINTENAIR allan.nava@hiway.media
